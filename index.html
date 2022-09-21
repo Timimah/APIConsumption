@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Turner</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body onload="test()">
+    <div style="background-color: #345;">
+        <header class="nav" style="position: sticky; top: 0;">
+            <nav class="navbar p-2 navbar-brand-expand-sm container-fluid"  style="background-color: #124;">
+                <a class="navbar-brand" href="#">Page Turner</a>
+                    <ul class="nav text-light">
+                        <li class="nav-item">
+                            <a href="check_grade.html" class="nav-link text-light" target="_self">Home</a>
+                        </li>&nbsp;
+                        <li class="nav-item">
+                            <a href="student_list.html" class="nav-link text-light" target="_self">Reviews</a>
+                        </li>&nbsp;
+                        <li class="nav-item">
+                            <a href="student_list.html" class="nav-link text-light" target="_self">Pricing</a>
+                        </li>&nbsp;
+                        <li class="nav-item">
+                            <a href="student_list.html" class="nav-link text-light" target="_self">Blog</a>
+                        </li>&nbsp;
+                        <li class="nav-item">
+                            
+                        </li>&nbsp;
+                    </ul>
+            </nav>
+        </header>
+        <main class="row">
+            <div class="m-4 col-12 col-sm-12 col-lg-9 col-md-9 col-xl-9">
+                <div class="row text-light" id="books"></div>
+            </div>
+            <div class="w-25 card mx-3 text-light text-center" style="position: fixed; right: 0; top: 4em; bottom: 0;background-color: #124;">
+                <div class="mt-2 fs-5">Categories <hr> </div>
+                <div>Fantasy </div>
+                <div>Thriller </div>
+                <div>Adventure </div>
+                <div>Categories </div>
+                <div>Fantasy </div>
+                <div>Thriller </div>
+                <div>Adventure </div>
+                <div class="input-group" style="margin-top: 12em;">
+                    <input class="form-control w-50" type="search" name="" id="">
+                    <button class="form-control" type="submit">Search</button>
+                </div>
+                <ul>
+                    <li class="">
+                        <a href="search_list.html" class="nav-link text-light" target="_self">About</a>
+                    </li>&nbsp;
+                    <li class="">
+                        <a href="student_list.html" class="nav-link text-light" target="_self">Contact</a>
+                    </li>&nbsp;
+                </ul>
+            </div>
+        </main>
+        <img src="" alt="">
+        <footer><button type="submit" onclick="test()">Test</button></footer>
+    </div>
+</body>
+<script>
+    let endPoint = fetch("https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=og8vTSy2nuyjJQirux1y4aZwtGcBK4RV")
+    const test = async() => {
+        let response = await endPoint
+        let jsonResponse = await response.json()
+        console.log(jsonResponse);
+        jsonResponse.results.books.map((value) =>{
+            console.log(value)
+            books.innerHTML += `<div class="col-6 row"><div class="col"><a href="${value.book_uri}" target="_self"><img src="${value.book_image}" width="200" height="300"></a><br><br></div><div class="col">${value.description} Lorem ipsum dolor sit amet consectetur adipisicing elit</div><div><br>`
+        })
+    }
+</script>
+</html>
